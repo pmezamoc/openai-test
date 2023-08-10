@@ -138,3 +138,11 @@ RUN echo "rvm_silence_path_mismatch_check_flag=1" >> ~/.rvmrc
 # Install flyyctl
 RUN /bin/bash -l -c "curl -L https://fly.io/install.sh | sh"
 RUN echo "export PATH=\"/home/codespace/.fly/bin:\$PATH\"" >> ~/.bashrc
+
+FROM gitpod/workspace-full
+
+# Install Redis.
+RUN sudo apt-get update \
+ && sudo apt-get install -y \
+  redis-server \
+ && sudo rm -rf /var/lib/apt/lists/*
